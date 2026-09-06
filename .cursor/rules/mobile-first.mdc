@@ -1,0 +1,40 @@
+---
+description: Mobile-first design standards for The Shinebox
+alwaysApply: true
+---
+
+# Mobile-First Design
+
+Most visitors will use smartphones. Default to mobile layouts and enhance for larger screens.
+
+## CSS
+
+- Write base styles for small screens; use `@media (min-width: …)` to scale up.
+- Breakpoints: `640px` (tablet), `960px` (desktop).
+- Use spacing and sizing tokens from `index.css` (`--space-*`, `--touch-target`, `--font-size-*`).
+- Touch targets must be at least 44px (`var(--touch-target)`).
+- Body text must stay at 16px (`1rem`) minimum to avoid iOS input zoom.
+- Account for notched devices with `env(safe-area-inset-*)`.
+
+## Components
+
+- Prefer stacked, full-width layouts on mobile.
+- Make navigation and CTAs easy to tap with one thumb.
+- Test narrow viewports (~320px) before adding desktop-only patterns.
+- Avoid hover-only interactions; ensure touch and keyboard access.
+
+## Example
+
+```css
+/* Mobile base */
+.card {
+  padding: var(--space-md);
+}
+
+/* Enhance for tablet+ */
+@media (min-width: 640px) {
+  .card {
+    padding: var(--space-lg);
+  }
+}
+```
